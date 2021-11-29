@@ -24,6 +24,7 @@ export const reducer = createReducer(
   initialState,
   on(actions.tempTopicCreated, (s, a) => adapter.addOne(a.payload, s)),
   on(actions.topicSaved, (s, a) => adapter.removeOne(a.meta.oldId, s)),
+  on(actions.topicSavedFailure, (s, a) => adapter.removeOne(a.payload.id, s)),
 );
 
 export const { selectAll: selectAllTempTopics } = adapter.getSelectors();

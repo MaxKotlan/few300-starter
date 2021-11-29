@@ -1,4 +1,4 @@
-import { createServer, Model } from 'miragejs';
+import { createServer, Model, Response } from 'miragejs';
 import { environment } from 'src/environments/environment';
 import { TopicEntity } from '../reducers/topics.reducer';
 
@@ -31,7 +31,11 @@ export function mockServer() {
         'topics',
         (schema, request) => {
           let attrs = JSON.parse(request.requestBody);
-          return schema.create('topics', attrs).attrs;
+          if (attrs.description === 'tacos') {
+            return new Response(400, {}, { errors: ['We do not study tacos here.'] });
+          } else {
+            return schema.create('topics', attrs).attrs;
+          }
         },
         { timing: 2000 },
       );

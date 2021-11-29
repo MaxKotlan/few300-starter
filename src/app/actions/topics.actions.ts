@@ -16,3 +16,8 @@ export const topicSaved = createAction(
   '[app topics] topic saved',
   props<{ payload: TopicEntity; meta: { oldId: string } }>(),
 );
+
+export const topicSavedFailure = createAction(
+  '[app topics] topics saved failure',
+  props<{ payload: TopicEntity; meta: { errorMessage: string; statusCode: string } }>(),
+);

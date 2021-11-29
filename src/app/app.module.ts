@@ -15,8 +15,9 @@ import { TopicsComponent } from './components/topics/topics.component';
 import { TopicsEffects } from './effects/topics.effects';
 import { reducers } from './reducers';
 import { DarkModeService } from './services/dark-mode.service';
+import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, HomeComponent, TopicsComponent, TopicEntryComponent],
+  declarations: [AppComponent, NavBarComponent, HomeComponent, TopicsComponent, TopicEntryComponent, ErrorDisplayComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

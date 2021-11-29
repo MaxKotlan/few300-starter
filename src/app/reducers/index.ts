@@ -1,4 +1,5 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+import { TopicModel } from '../models';
 import { ExistenceCheckSelector } from '../validators/already-exists.validator';
 import * as fromTempTopics from './temp-topics.reducer';
 import * as fromTopics from './topics.reducer';
@@ -23,7 +24,23 @@ const selectAllTopics = createSelector(selectTopicsState, fromTopics.selectAllTo
 const selectAllTempTopics = createSelector(selectTempTopicsState, fromTempTopics.selectAllTempTopics);
 
 export const selectAllMergedTopics = createSelector(selectAllTopics, selectAllTempTopics, (topics, tempTopics) => {
-  return [...topics, ...tempTopics];
+  const newTopics = topics.map((t) => {
+    return {
+      entity: t,
+      meta: {
+        isTemporary: false,
+      },
+    } as TopicModel;
+  });
+  const newTempTopics = tempTopics.map((t) => {
+    return {
+      entity: t,
+      meta: {
+        isTemporary: true,
+      },
+    } as TopicModel;
+  });
+  return [...newTopics, ...newTempTopics];
 });
 export const selectTopicExists: ExistenceCheckSelector = (props: { value: string }) =>
   createSelector(selectAllTopics, (topics) =>

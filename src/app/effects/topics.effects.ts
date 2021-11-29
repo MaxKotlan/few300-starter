@@ -18,16 +18,16 @@ export class TopicsEffects {
     );
   });
 
-  // topicSaved$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(actions.topicCreated),
-  //     switchMap(({ description }) =>
-  //       this.client
-  //         .post<TopicEntity>(`${this.baseUrl}/topics`, { description })
-  //         .pipe(map((r) => actions.topicSaved({ payload: r }))),
-  //     ),
-  //   );
-  // });
+  topicSaved$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(actions.tempTopicCreated), // if it isn't one of these, I don't care.
+      switchMap((originalAction) =>
+        this.client
+          .post<TopicEntity>(`${this.baseUrl}/topics`, { description: originalAction.payload.description })
+          .pipe(map((r) => actions.topicSaved({ payload: r, meta: { oldId: originalAction.payload.id } }))),
+      ),
+    );
+  });
 
   loadTopics$ = createEffect(() => {
     return this.actions$.pipe(

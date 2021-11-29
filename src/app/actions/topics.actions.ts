@@ -12,4 +12,7 @@ export const topicCreated = createAction('[app topics] topic created', props<{ d
 
 export const tempTopicCreated = createAction('[app topics] temp topic created', props<{ payload: TopicEntity }>());
 
-export const topicSaved = createAction('[app topics] topic saved', props<{ payload: TopicEntity }>());
+export const topicSaved = createAction(
+  '[app topics] topic saved',
+  props<{ payload: TopicEntity; meta: { oldId: string } }>(),
+);

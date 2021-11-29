@@ -10,4 +10,6 @@ export const loadTopicsSucceeded = createAction(
 
 export const topicCreated = createAction('[app topics] topic created', props<{ description: string }>());
 
+export const tempTopicCreated = createAction('[app topics] temp topic created', props<{ payload: TopicEntity }>());
+
 export const topicSaved = createAction('[app topics] topic saved', props<{ payload: TopicEntity }>());

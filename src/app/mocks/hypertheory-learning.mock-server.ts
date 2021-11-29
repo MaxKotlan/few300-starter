@@ -6,6 +6,7 @@ const topicFixture: TopicEntity[] = [
   { id: '1', description: 'Angular' },
   { id: '2', description: 'TypeScript' },
   { id: '3', description: 'Git' },
+  { id: '4', description: 'CSS Selectors' },
 ];
 export function mockServer() {
   return createServer({
@@ -18,9 +19,13 @@ export function mockServer() {
     routes() {
       this.urlPrefix = environment.urls.hypertheoryLearning;
       this.namespace = 'learning';
-      this.get('topics', (schema, request) => {
-        return { data: schema.all('topics').models };
-      });
+      this.get(
+        'topics',
+        (schema, request) => {
+          return { data: schema.all('topics').models };
+        },
+        { timing: 3000 },
+      );
 
       this.post(
         'topics',

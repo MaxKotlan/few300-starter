@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { topicCreated } from 'src/app/actions/topics.actions';
 import { selectTopicExists } from 'src/app/reducers';
 import { alreadyExistsValidator } from 'src/app/validators/already-exists.validator';
-type ControlWithErrors = (AbstractControl & { errors?: any }) | null;
 @Component({
   selector: 'app-topic-entry',
   templateUrl: './topic-entry.component.html',

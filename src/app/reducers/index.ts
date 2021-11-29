@@ -1,6 +1,7 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 import { ExistenceCheckSelector } from '../validators/already-exists.validator';
 import * as fromTopics from './topics.reducer';
+
 export interface AppState {
   topics: fromTopics.TopicState;
 }

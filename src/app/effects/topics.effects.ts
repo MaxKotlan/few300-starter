@@ -9,17 +9,25 @@ import { TopicEntity } from '../reducers/topics.reducer';
 @Injectable()
 export class TopicsEffects {
   readonly baseUrl = environment.urls.hypertheoryLearning + 'learning';
-
-  topicSaved$ = createEffect(() => {
+  id = 1;
+  // topicCreated => tempTopicCreated
+  createTempTopic$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(actions.topicCreated),
-      switchMap(({ description }) =>
-        this.client
-          .post<TopicEntity>(`${this.baseUrl}/topics`, { description })
-          .pipe(map((r) => actions.topicSaved({ payload: r }))),
-      ),
+      map((a) => actions.tempTopicCreated({ payload: { description: a.description, id: 'T' + this.id++ } })),
     );
   });
+
+  // topicSaved$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(actions.topicCreated),
+  //     switchMap(({ description }) =>
+  //       this.client
+  //         .post<TopicEntity>(`${this.baseUrl}/topics`, { description })
+  //         .pipe(map((r) => actions.topicSaved({ payload: r }))),
+  //     ),
+  //   );
+  // });
 
   loadTopics$ = createEffect(() => {
     return this.actions$.pipe(

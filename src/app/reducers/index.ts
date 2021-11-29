@@ -19,30 +19,26 @@ export const reducers: ActionReducerMap<AppState> = {
 const selectTopicsState = createFeatureSelector<fromTopics.TopicState>('topics');
 const selectTempTopicsState = createFeatureSelector<fromTempTopics.TempTopicState>('tempTopics');
 
-const selectAllTopics = createSelector(selectTopicsState, fromTopics.selectAllTopics);
+const selectAllTopicsEntities = createSelector(selectTopicsState, fromTopics.selectAllTopics);
 
-const selectAllTempTopics = createSelector(selectTempTopicsState, fromTempTopics.selectAllTempTopics);
+const selectAllTempTopicsEntities = createSelector(selectTempTopicsState, fromTempTopics.selectAllTempTopics);
+
+const selectAllTopics = createSelector(selectAllTopicsEntities, (entities) => entities.map(makeModelFromTopic));
+const selectAllTempTopics = createSelector(selectAllTempTopicsEntities, (entities) => entities.map(makeModelFromTopic));
+
+function makeModelFromTopic(topic: fromTopics.TopicEntity) {
+  return {
+    entity: topic,
+    meta: {
+      isTemporary: topic.id.toString().startsWith('T'),
+    },
+  } as TopicModel;
+}
 
 export const selectAllMergedTopics = createSelector(selectAllTopics, selectAllTempTopics, (topics, tempTopics) => {
-  const newTopics = topics.map((t) => {
-    return {
-      entity: t,
-      meta: {
-        isTemporary: false,
-      },
-    } as TopicModel;
-  });
-  const newTempTopics = tempTopics.map((t) => {
-    return {
-      entity: t,
-      meta: {
-        isTemporary: true,
-      },
-    } as TopicModel;
-  });
-  return [...newTopics, ...newTempTopics];
+  return [...topics, ...tempTopics];
 });
 export const selectTopicExists: ExistenceCheckSelector = (props: { value: string }) =>
-  createSelector(selectAllTopics, (topics) =>
+  createSelector(selectAllTopicsEntities, (topics) =>
     topics.some((t) => t.description.toLocaleLowerCase().trim() === props.value.toLocaleLowerCase().trim()),
   );

@@ -12,11 +12,6 @@ import { disallowedTopicValidator } from 'src/app/validators/topic-not-allowed.v
 })
 export class TopicEntryComponent {
   form = this.formBuilder.group({
-    // description: [
-    //   '',
-    //   [Validators.required, Validators.maxLength(20), disallowedTopicValidator('dancing')],
-    //   [alreadyExistsValidator(this.store, selectTopicExists)],
-    // ],
     description: new FormControl('', {
       validators: [Validators.required, Validators.maxLength(20), disallowedTopicValidator('dancing')],
       asyncValidators: [alreadyExistsValidator(this.store, selectTopicExists)],

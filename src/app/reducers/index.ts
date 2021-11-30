@@ -19,6 +19,7 @@ export const reducers: ActionReducerMap<AppState> = {
 
 // Feature selector (since we are in the app feature - the root)
 // we are, for purposes of selectors, going to consider each 'branch' of the state a 'feature'
+
 const selectTopicsState = createFeatureSelector<fromTopics.TopicState>('topics');
 const selectTempTopicsState = createFeatureSelector<fromTempTopics.TempTopicState>('tempTopics');
 const selectApplicationErrorState = createFeatureSelector<fromAppErrors.AppErrorState>('applicationErrors');

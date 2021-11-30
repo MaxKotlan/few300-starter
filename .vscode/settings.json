@@ -35,7 +35,7 @@
   "workbench.sideBar.location": "right",
   "explorer.confirmDelete": false,
   "eslint.quiet": true,
-  "terminal.integrated.fontFamily": "monospace",
+  "terminal.integrated.fontFamily": "'FiraCode NF Retina'",
   "css.validate": false,
   "tailwindCSS.emmetCompletions": true,
   "editor.detectIndentation": false,

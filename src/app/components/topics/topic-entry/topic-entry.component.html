@@ -17,6 +17,7 @@
         <p *ngIf="description?.hasError('required')">We need a description</p>
         <p *ngIf="description?.hasError('maxlength')">This is too long for a description</p>
         <p *ngIf="description?.hasError('exists')">That Topic Already Exists</p>
+        <p *ngIf="description?.hasError('noReact')">Not interested in that.</p>
       </div>
     </label>
     <div>
@@ -26,3 +27,5 @@
     </div>
   </form>
 </div>
+
+<pre> {{ description?.errors | json }}</pre>

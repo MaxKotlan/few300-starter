@@ -17,7 +17,14 @@ import { reducers } from './reducers';
 import { DarkModeService } from './services/dark-mode.service';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, HomeComponent, TopicsComponent, TopicEntryComponent, ErrorDisplayComponent],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    HomeComponent,
+    TopicsComponent,
+    TopicEntryComponent,
+    ErrorDisplayComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

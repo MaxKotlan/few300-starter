@@ -1,1 +1,10 @@
-<p>account works!</p>
+<section>
+  <header>
+    <p class="text-xl">Your Account Information</p>
+  </header>
+  <app-account-display [account]="account$ | async"></app-account-display>
+</section>
+<section>
+  <header class="text-l">Your Order History:</header>
+  <app-orders-display></app-orders-display>
+</section>

@@ -10,6 +10,7 @@ import { DarkModeService } from './services/dark-mode.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  isLate: boolean = new Date().getHours() >= 16;
   dark$!: Observable<boolean>;
   constructor(private darkModeService: DarkModeService, private store: Store) {
     store.dispatch(loadTopics());

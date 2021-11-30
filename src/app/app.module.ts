@@ -15,6 +15,7 @@ import { TopicsComponent } from './components/topics/topics.component';
 import { TopicsEffects } from './effects/topics.effects';
 import { reducers } from './reducers';
 import { DarkModeService } from './services/dark-mode.service';
+import { PipesModule } from './utilities/pipesmodule/pipes.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,7 @@ import { DarkModeService } from './services/dark-mode.service';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers),
-
+    PipesModule,
     HttpClientModule,
     EffectsModule.forRoot([TopicsEffects]),
     ReactiveFormsModule,

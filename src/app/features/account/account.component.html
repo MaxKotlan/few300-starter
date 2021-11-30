@@ -12,5 +12,8 @@
 </section>
 <section>
   <header class="text-l">Your Order History:</header>
-  <app-orders-display></app-orders-display>
+  <app-orders-display
+    [orders]="orderHistory$ | async"
+    [loaded]="ordersLoaded$ | async"
+  ></app-orders-display>
 </section>

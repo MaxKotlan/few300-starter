@@ -75,7 +75,7 @@ export function mockServer() {
             ],
           };
         },
-        { timing: 3500 },
+        { timing: 0 },
       );
       this.get(
         '/',
@@ -89,7 +89,7 @@ export function mockServer() {
             },
           };
         },
-        { timing: 500 },
+        { timing: 0 },
       );
     },
   });

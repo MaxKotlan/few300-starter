@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { accountFeature } from './account-info.redux-feature';
 import { loadAccountInformation } from './actions';
@@ -7,11 +7,15 @@ import { loadAccountInformation } from './actions';
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AccountComponent implements OnInit {
   personalInfoLoaded$ = this.store.select(
     accountFeature.selectPersonalInfoLoaded,
   );
+
+  orderHistory$ = this.store.select(accountFeature.selectOrders);
+  ordersLoaded$ = this.store.select(accountFeature.selectOrdersLoaded);
   account$ = this.store.select(accountFeature.selectPersonalInfo);
   constructor(private store: Store) {
     store.dispatch(loadAccountInformation());

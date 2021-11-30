@@ -37,7 +37,7 @@ export const accountFeature = createFeature({
     })),
     on(actions.accountOrderInformationLoaded, (s, a) => ({
       ...s,
-      order: a.payload,
+      orders: a.payload,
       ordersLoaded: true,
     })),
   ),

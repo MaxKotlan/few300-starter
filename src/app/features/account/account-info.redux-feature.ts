@@ -14,17 +14,31 @@ export interface AccountInfo {
 export interface AccountState {
   personalInfo: AccountInfo | null;
   orders: OrderInfo[] | null;
+  personalInfoLoaded: boolean;
+  ordersLoaded: boolean;
 }
 
 const initialState: AccountState = {
   personalInfo: null,
   orders: null,
+  personalInfoLoaded: false,
+  ordersLoaded: false,
 };
 
 export const accountFeature = createFeature({
   name: 'accountFeature',
   reducer: createReducer(
     initialState,
-    on(actions.accountInformationLoaded, (s, a) => a.payload),
+    on(actions.loadAccountInformation, () => initialState),
+    on(actions.accountInformationLoaded, (s, a) => ({
+      ...s,
+      personalInfo: a.payload.personalInfo,
+      personalInfoLoaded: true,
+    })),
+    on(actions.accountOrderInformationLoaded, (s, a) => ({
+      ...s,
+      order: a.payload,
+      ordersLoaded: true,
+    })),
   ),
 });

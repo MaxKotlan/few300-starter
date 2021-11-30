@@ -9,6 +9,9 @@ import { loadAccountInformation } from './actions';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
+  personalInfoLoaded$ = this.store.select(
+    accountFeature.selectPersonalInfoLoaded,
+  );
   account$ = this.store.select(accountFeature.selectPersonalInfo);
   constructor(private store: Store) {
     store.dispatch(loadAccountInformation());

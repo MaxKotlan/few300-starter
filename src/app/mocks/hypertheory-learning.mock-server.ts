@@ -48,18 +48,15 @@ export function mockServer() {
       // GET http://api.hypertheory.com/accounts/{accountNumber} "other people's accounts"
       // GET http://api.store.com/my-cart
       this.namespace = 'my-account';
-
       this.get(
-        '/',
+        '/order-history',
         () => {
           return {
-            personalInfo: {
-              employeeId: '93939',
-              firstName: 'Jeff',
-              lastName: 'Gonzalez',
-              email: 'jeff@aol.com',
-            },
-            orders: [
+            dateOfFirstOrder: 'some date',
+            dateOfMostRecentOrder: 'some date',
+            numberOfOpenOrders: 12,
+            numberOfFulfilledOrders: 122,
+            data: [
               {
                 id: '93939',
                 date: subDays(new Date(), 20).toISOString(),
@@ -78,7 +75,21 @@ export function mockServer() {
             ],
           };
         },
-        { timing: 4000 },
+        { timing: 3500 },
+      );
+      this.get(
+        '/',
+        () => {
+          return {
+            personalInfo: {
+              employeeId: '93939',
+              firstName: 'Jeff',
+              lastName: 'Gonzalez',
+              email: 'jeff@aol.com',
+            },
+          };
+        },
+        { timing: 500 },
       );
     },
   });

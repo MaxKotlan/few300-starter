@@ -2,7 +2,13 @@
   <header>
     <p class="text-xl">Your Account Information</p>
   </header>
-  <app-account-display [account]="account$ | async"></app-account-display>
+  <app-account-display
+    *ngIf="personalInfoLoaded$ | async"
+    [account]="account$ | async"
+  ></app-account-display>
+  <div *ngIf="(personalInfoLoaded$ | async) === false">
+    <p>Loading your personal information....</p>
+  </div>
 </section>
 <section>
   <header class="text-l">Your Order History:</header>

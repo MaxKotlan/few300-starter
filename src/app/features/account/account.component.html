@@ -12,8 +12,7 @@
 </section>
 <section>
   <header class="text-l">Your Order History:</header>
-  <app-orders-display
-    [orders]="orderHistory$ | async"
-    [loaded]="ordersLoaded$ | async"
-  ></app-orders-display>
+  <a [routerLink]="['order-history']">See Your Order History</a>
 </section>
+
+<router-outlet></router-outlet>

@@ -10,12 +10,14 @@ import { AccountEffects } from './account.effects';
 import { AccountDisplayComponent } from './components/account-display/account-display.component';
 import { OrdersDisplayComponent } from './components/orders-display/orders-display.component';
 import { BooleanPipe } from './pipes/boolean.pipe';
+import { OrdersComponent } from './container/orders/orders.component';
 @NgModule({
   declarations: [
     AccountComponent,
     AccountDisplayComponent,
     OrdersDisplayComponent,
     BooleanPipe,
+    OrdersComponent,
   ],
   imports: [
     CommonModule,

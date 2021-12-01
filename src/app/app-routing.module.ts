@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { MustBeLoggedInGuard } from './auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { TopicsComponent } from './components/topics/topics.component';
 
+// http://app.hypertheory.com/[home|topics|account]
 const routes: Routes = [
   {
     path: 'home',
@@ -14,7 +16,9 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    loadChildren: () => import('./features/account/account.module').then((m) => m.AccountModule),
+    canActivate: [MustBeLoggedInGuard],
+    loadChildren: () =>
+      import('./features/account/account.module').then((m) => m.AccountModule),
   },
   {
     path: '**',

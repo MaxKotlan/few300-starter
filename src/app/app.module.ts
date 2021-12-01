@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MustBeLoggedInGuard } from './auth.guard';
 import { extModules, extProviders } from './build-specifics';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 import { HomeComponent } from './components/home/home.component';
@@ -35,7 +36,7 @@ import { PipesModule } from './utilities/pipesmodule/pipes.module';
     ReactiveFormsModule,
     ...extModules,
   ],
-  providers: [DarkModeService, ...extProviders],
+  providers: [DarkModeService, ...extProviders, MustBeLoggedInGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

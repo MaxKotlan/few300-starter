@@ -6,6 +6,7 @@ import { OrdersComponent } from './container/orders/orders.component';
 
 const routes: Routes = [
   {
+    // http://app.hypertheory.com/account/order-history
     path: '',
     component: AccountComponent,
     children: [
